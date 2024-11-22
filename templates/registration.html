@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action='' method='post' class='form-styles w-25 d-flex flex-column gap-2'>
+    {% csrf_token %}
+    <h2 class='text-center'>Registration</h2>
+    {% if form.errors %}
+        {% for key, errors in form.errors.items %}
+            {% for error in errors %}
+                <small class='text-center'>
+                    <b class='text-danger'>{{ error }}</b>
+                </small>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    <input required class='form-control' type='email' name='email' id='usernsme' placeholder='E-mail'>
+    <input required class='form-control' type='password' name='password1' placeholder='password'>
+    <input required class='form-control' type='password' name='password2' placeholder='password again'>
+    <button class='btn btn-outline-dark' type='submit'>Registration</button>
+    <b class='text-center'>
+        <small>Already have you an account? Login <a class='text-decoration-none' href="{% url 'login' %}">here</a> ...</small>
+    </b>
+</form>
+
+<style>
+    .form-styles {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -75%);
+    }
+</style>
+
+{% endblock content %}
